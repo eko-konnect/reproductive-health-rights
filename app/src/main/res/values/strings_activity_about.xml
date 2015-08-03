@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="title_appName">Application Name</string>
+    <string name="appName">ReproHealth</string>
+    <string name="title_appVersion">Version</string>
+    <string name="appVersion">1.0</string>
+    <string name="title_appNGO">Organisation</string>
+    <string name="appNGO">Women\'s Health and Action Research Centre - WHARC</string>
+    <string name="title_appSponsors">Sponsors</string>
+    <string name="EkoKonnect">EkoKonnect</string>
+    <string name="Ford">Ford Foundation</string>
+    <string name="title_appDev">Developers</string>
+    <string name="wale">Wale Oyediran</string>
+    <string name="lolu">\'Lolu Bodunwa</string>
+    <string name="stanley">Stanley Agba</string>
+</resources>

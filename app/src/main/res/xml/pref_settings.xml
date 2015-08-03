@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android" >
+    <PreferenceCategory 
+        android:title="@string/title_profile">
+       <EditTextPreference 
+            android:key="Firstname"
+            android:title="@string/pref_fname"
+            android:selectable="false"/>
+        
+        <EditTextPreference 
+            android:key="Lastname"            
+            android:title="@string/pref_lname"
+            android:selectable="false"/>
+        
+        <EditTextPreference 
+            android:key="Email"
+            android:title="@string/pref_email"
+            android:selectable="false"/>
+        
+        <EditTextPreference 
+            android:key="Sex"
+            android:title="@string/pref_sex"
+            android:selectable="false"/>
+        
+        <EditTextPreference  
+            android:key="DOB"
+            android:title="@string/pref_dob"
+            android:selectable="false"/>
+    </PreferenceCategory>
+    
+    <PreferenceCategory 
+        android:title="@string/pref_header_data_sync">
+        
+        <ListPreference
+        android:defaultValue="180"
+        android:entries="@array/pref_sync_frequency_titles"
+        android:entryValues="@array/pref_sync_frequency_values"
+        android:key="sync_frequency"
+        android:negativeButtonText="@null"
+        android:positiveButtonText="@null"
+        android:title="@string/pref_title_sync_frequency" />        
+        
+    </PreferenceCategory>
+
+</PreferenceScreen>

@@ -1,0 +1,102 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:paddingBottom="15dp"
+              android:paddingLeft="10dp"
+              android:paddingRight="10dp"
+              android:paddingTop="10dp" 
+              android:baselineAligned="false"
+              android:background="@android:drawable/list_selector_background">
+     
+    <LinearLayout 
+        android:id="@+id/av_layout"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:paddingRight="10dip">
+        <ImageView
+            android:id="@+id/iv_avatar"            
+            android:layout_width="40dip"
+            android:layout_height="40dip"         
+            android:contentDescription="Avatar"
+            android:src="@android:drawable/star_on"
+            />
+    </LinearLayout>
+ 
+    <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/av_layout"
+            android:layout_alignParentRight="true"
+            android:orientation="vertical" >
+            
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingBottom="5dip" >
+            
+            <TextView
+                android:id="@+id/title"
+                android:layout_width="0dip"
+                android:layout_weight="3"
+                android:paddingRight="5dip"
+                android:layout_height="wrap_content"
+                android:maxLines="2"
+                
+                android:layout_gravity="right"
+                android:textSize="@dimen/bigfont"
+                android:textStyle="bold"
+                android:gravity="left"
+                android:textColor="#3838FF"
+                android:text="No title"/>
+                        
+            
+        </LinearLayout>                      
+
+        <TextView
+                android:id="@+id/summary"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_gravity="left"
+                android:gravity="left"
+                android:ellipsize="end"
+                android:maxLines="4"
+                android:textSize="@dimen/smallfont"                
+                android:textColor="#121312"
+                android:text="No Summary"/>
+        
+        <LinearLayout             
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingTop="5dip">
+            <TextView	
+                android:id="@+id/date"                          
+	            android:layout_width="0dip"
+	            android:layout_weight="3"
+	            android:layout_height="wrap_content"
+	            android:layout_gravity="left"
+	            android:gravity="left"            	            
+	            android:textSize="@dimen/verysmallfont"
+	            android:textColor="#868686" 
+	            android:text="Nov 21, 2013"/>
+            
+            <TextView	   
+                android:id="@+id/author"                         
+	            android:layout_width="0dip"
+	            android:layout_weight="1"
+	            android:layout_height="wrap_content"
+	            android:layout_gravity="right"
+	            android:gravity="center"            	            
+	            android:textSize="@dimen/verysmallfont"
+	            android:textColor="#FFF" 
+	            android:text="No Author"
+	            android:singleLine="true"
+	            android:background="#390"/>
+            
+        </LinearLayout>
+        
+    </LinearLayout>
+ 
+ 
+</RelativeLayout>

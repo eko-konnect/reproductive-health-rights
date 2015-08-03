@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/my_bg">
+    <LinearLayout
+	    android:layout_width="fill_parent"
+	    android:layout_height="wrap_content"
+	    android:orientation="vertical"
+	    android:paddingTop="@dimen/activity_vertical_margin"
+	    android:paddingBottom="@dimen/activity_vertical_margin"
+	    android:paddingLeft="15dip"
+	    android:paddingRight="15dip">
+    
+		<TextView
+		    android:id="@+id/tipTitle"
+		    android:layout_width="fill_parent"
+		    android:layout_height="wrap_content"
+		    android:textStyle="bold"
+		    android:textSize="@dimen/bigfont"
+		    android:paddingTop="5dip"
+		    android:paddingBottom="5dip"
+		    android:text="No Title"
+		 />
+		<ImageView 
+		    android:id="@+id/tipImage"
+		    android:layout_width="wrap_content"
+		    android:layout_height="wrap_content"
+		    android:src="@drawable/com_facebook_profile_picture_blank_square"/>
+		
+		<LinearLayout 
+		    android:layout_height="wrap_content"
+		    android:layout_width="match_parent"
+		    android:orientation="horizontal"
+		    android:paddingTop="10dip">
+		    
+		    <TextView
+			    android:id="@+id/tipAuthor"
+			    android:layout_width="wrap_content"
+			    android:layout_height="wrap_content"			    
+			    android:textStyle="bold"
+			    android:textSize="@dimen/verysmallfont"
+			    android:text="No Author"
+			    android:textColor="@color/com_facebook_blue"
+		  	/>
+		    
+		    <TextView
+			    android:id="@+id/tipDate"
+			    android:layout_width="wrap_content"
+			    android:layout_height="wrap_content"
+			    android:paddingLeft="10dip"
+			    android:textStyle="italic"
+			    android:textSize="@dimen/verysmallfont"
+			    android:text="No Date"
+			    android:textColor="@android:color/darker_gray"
+		  	/>
+		    
+		</LinearLayout>
+		
+		
+		<TextView
+		    android:id="@+id/tipContent"
+		    android:layout_width="fill_parent"
+		    android:layout_height="wrap_content"
+		    android:textSize="@dimen/smallfont"
+		    android:paddingTop="10dp"
+		    android:text="No Content"/>
+		
+		
+	</LinearLayout>
+        
+</ScrollView>

@@ -1,0 +1,151 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="fill_parent"
+    tools:context=".AboutActivity" >
+    
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical" >
+        
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/title_appName"
+            android:textSize="25sp"
+            android:textStyle="bold" />
+        
+        <TextView
+            android:id="@+id/appName"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/appName"
+            android:textSize="20sp"
+            android:layout_marginLeft="6dp" />
+        
+        <View
+	        android:layout_width="match_parent"
+	        android:layout_height="1dp"
+	        android:background="@android:color/holo_blue_dark" 
+	        android:layout_marginBottom="5dp"/>
+
+        
+        <TextView 
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/title_appVersion"
+            android:textSize="25sp"
+            android:textStyle="bold"/>
+        
+        <TextView
+            android:id="@+id/appVersion"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/appVersion"
+            android:textSize="20sp" 
+            android:layout_marginLeft="6dp"/>
+
+       <View
+	        android:layout_width="match_parent"
+	        android:layout_height="1dp"
+	        android:background="@android:color/holo_blue_dark" 
+	        android:layout_marginBottom="5dp"
+	        android:layout_marginTop="3dp"
+	        />
+       
+        <TextView 
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/title_appNGO"
+            android:textSize="25sp"
+            android:textStyle="bold"/>
+        
+        <TextView
+            android:id="@+id/appNGO"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/appNGO"
+            android:textColor="@android:color/holo_blue_dark"
+            android:textSize="20sp" 
+            android:layout_marginLeft="6dp"/>
+        
+        <View
+	        android:layout_width="match_parent"
+	        android:layout_height="1dp"
+	        android:background="@android:color/holo_blue_dark" 
+	        android:layout_marginBottom="5dp"
+	        android:layout_marginTop="3dp"/>
+        
+        <TextView 
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/title_appSponsors"
+            android:textSize="25sp"
+            android:textStyle="bold"/>
+        
+        <TextView
+            android:id="@+id/konnect"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/EkoKonnect"
+            android:textColor="@android:color/holo_blue_dark"
+            android:textSize="20sp"
+            android:layout_marginLeft="6dp"/>
+        
+        <TextView
+            android:id="@+id/ford"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/Ford"
+            android:textColor="@android:color/holo_blue_dark"
+            android:textSize="20sp" 
+            android:layout_marginLeft="6dp"/>
+
+        <View
+	        android:layout_width="match_parent"
+	        android:layout_height="1dp"
+	        android:background="@android:color/holo_blue_dark" 
+	        android:layout_marginBottom="5dp"
+	        android:layout_marginTop="3dp"/>
+        
+        <TextView 
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/title_appDev"
+            android:textSize="25sp"
+            android:textStyle="bold"/>
+        
+        <TextView
+            android:id="@+id/wale" 
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/wale"
+            android:textSize="15sp"
+            android:textColor="@android:color/holo_blue_dark"
+            android:layout_marginLeft="6dp"/>
+        
+        <TextView 
+            android:id="@+id/lolu"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/lolu"
+            android:textColor="@android:color/holo_blue_dark"
+            android:textSize="15sp"
+            android:layout_marginLeft="6dp"/>
+        
+        <TextView
+            android:id="@+id/stanley" 
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/stanley"
+            android:textColor="@android:color/holo_blue_dark"
+            android:textSize="15sp"
+            android:layout_marginLeft="6dp"/>
+        
+        
+    </LinearLayout>
+
+    
+
+</ScrollView>

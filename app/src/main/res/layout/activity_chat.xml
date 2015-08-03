@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="10dip"
+    android:background="@drawable/my_bg">
+    
+    <LinearLayout 
+        android:id="@+id/bottom_bar"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="10dip"
+        android:paddingBottom="5dip"
+        android:layout_alignParentBottom="true"
+        android:background="@drawable/bottom_bar_xml">
+        
+        <EditText 
+            android:id="@+id/text"
+            android:layout_width="0dip"
+            android:singleLine="true"
+            android:layout_height="fill_parent"
+           	android:layout_weight="1"
+            android:hint="Type Message Here"/>
+        
+        <ImageButton 
+            android:id="@+id/sendButton"
+            android:paddingLeft="5dip"
+            android:paddingRight="5dip"
+            android:layout_height="fill_parent"
+            android:layout_width="wrap_content"
+            android:src="@android:drawable/ic_menu_send"
+            android:background="@android:color/transparent"/>
+        
+    </LinearLayout>
+    
+    <ListView 
+        android:id="@android:id/list"
+        android:layout_width="fill_parent"
+        android:layout_height="0dip"
+        android:layout_alignParentTop="true"
+        android:layout_above="@id/bottom_bar"
+        android:divider="#FFF"
+        android:dividerHeight="5dip">
+    </ListView>
+    <TextView 
+        android:id="@android:id/empty"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_alignParentTop="true"
+        android:layout_above="@id/bottom_bar"
+        android:gravity="center_vertical|center_horizontal"
+        android:text="@string/empty_chat_list"/>
+    
+    
+
+</RelativeLayout>

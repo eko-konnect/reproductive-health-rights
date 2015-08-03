@@ -1,0 +1,130 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"    
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/my_bg"
+    tools:context=".LoginActivity" >
+
+    <!-- Login progress -->
+
+    <LinearLayout
+        android:id="@+id/login_status"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        android:visibility="gone" >
+
+        <ProgressBar
+            style="?android:attr/progressBarStyleLarge"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp" />
+
+        <TextView
+            android:id="@+id/login_status_message"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:fontFamily="sans-serif-light"
+            android:text="@string/login_progress_signing_in"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+    </LinearLayout>
+
+    <!-- Login form -->
+	<LinearLayout 
+	    android:id="@+id/login_form"
+	    android:layout_width="fill_parent"
+	    android:layout_height="fill_parent"
+	    android:orientation="vertical">
+        
+	    <LinearLayout 
+	        android:layout_width="fill_parent"
+	        android:layout_height="0dip"
+	        android:layout_weight="3"
+	        android:orientation="vertical">
+	        <LinearLayout
+	            android:layout_width="fill_parent"
+	            android:layout_height="fill_parent"
+	            android:layout_gravity="center_horizontal"
+	            android:gravity="center_horizontal|bottom">
+	            <ImageView 
+		            android:layout_width="wrap_content"
+		            android:layout_height="wrap_content"
+		            android:layout_gravity="bottom|center_horizontal"
+		            android:src="@drawable/reprologo"/>
+	        </LinearLayout>
+	        
+	        	
+	    </LinearLayout>
+        
+	    <ScrollView	        
+	        android:layout_width="fill_parent"
+	        android:layout_height="0dip"
+	        android:layout_weight="4"
+	        android:visibility="visible" >
+	
+	        <LinearLayout
+	            style="@style/LoginFormContainer"
+	            android:orientation="vertical" >
+
+	            <!--<TextView 	   -->
+	                <!--android:id="@+id/login_guide_text"             -->
+	                <!--android:layout_width="fill_parent"-->
+	                <!--android:layout_height="wrap_content"	                -->
+	                <!--android:text="Login with any of the following accounts"-->
+	                <!--android:gravity="center" />-->
+	            
+	            <LinearLayout 
+	                android:layout_width="fill_parent"
+	                android:layout_height="wrap_content"
+	                android:orientation="vertical" >
+		            
+		            <com.facebook.login.widget.LoginButton
+		                android:id="@+id/facebook_sigin"
+		                android:layout_width="match_parent"
+		                android:layout_height="50dp"
+		                android:layout_gravity="center"
+		                android:layout_marginBottom="30dip" 
+		                android:layout_marginLeft="4dip"
+		                android:layout_marginRight="4dip"
+		                android:paddingBottom="4dip"/>
+		                
+	            </LinearLayout>
+	            	            
+	        </LinearLayout>
+	    </ScrollView>
+	    
+	    <LinearLayout 
+	        android:layout_width="fill_parent"
+	        android:layout_height="0dip"
+	        android:layout_weight="1"
+	        android:orientation="vertical" >
+	     <LinearLayout 
+	         android:layout_width="wrap_content"
+	         android:layout_height="wrap_content"
+	         android:orientation="horizontal"
+	         android:layout_gravity="center_horizontal">
+	            <ImageView 
+	             android:layout_width="100dip"
+	             android:layout_height="wrap_content"
+	             android:src="@drawable/wharc_logo"/>
+	         <ImageView 
+	             android:layout_width="100dip"
+	             android:layout_height="wrap_content"
+	             android:src="@drawable/eko_small"
+	             android:paddingRight="10dip"/>
+	         <ImageView 
+	             android:layout_width="100dip"
+	             android:layout_height="wrap_content"
+	             android:src="@drawable/ff"/>
+	         
+	     </LinearLayout>
+	        	
+	    </LinearLayout>
+	    
+	</LinearLayout>
+    
+
+</FrameLayout>

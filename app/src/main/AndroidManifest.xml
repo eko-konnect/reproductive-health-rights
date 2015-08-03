@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="org.ekokonnect.reprohealth"
+    android:versionCode="1"
+    android:versionName="1.0" >
+
+    <uses-permission android:name="android.permission.WRITE_SETTINGS" />    
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="com.google.android.providers.gsf.permission.READ_GSERVICES" />
+    <uses-permission android:name="android.permission.GET_ACCOUNTS" />
+    <uses-permission android:name="android.permission.USE_CREDENTIALS" />
+    <!-- Permission to vibrate -->
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <!-- Creates a custom permission so only this app can receive its messages. -->
+    <permission
+        android:name="org.ekokonnect.reprohealth.permission.C2D_MESSAGE"
+        android:protectionLevel="signature" />
+    <uses-permission android:name="org.ekokonnect.reprohealth.permission.C2D_MESSAGE" />
+ 
+    <!-- This app has permission to register and receive data message. GCM-->
+    <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/ic_launcher"
+        android:label="@string/app_name"
+        android:theme="@style/AppTheme" >
+        <activity
+            android:name="org.ekokonnect.reprohealth.TipListActivity"
+            android:label="@string/app_name" >
+            
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="org.ekokonnect.reprohealth.PlaceListActivity"
+            android:label="@string/title_place_list"
+            android:parentActivityName=".TipListActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".TipListActivity" />
+        </activity>
+        <activity
+            android:name="org.ekokonnect.reprohealth.PlaceDetailActivity"
+            android:label="@string/title_place_detail"
+            android:parentActivityName=".PlaceListActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".PlaceListActivity" />
+        </activity>
+        <activity
+            android:name="org.ekokonnect.reprohealth.ViewTipActivity"
+            android:label="@string/title_activity_view_tip"
+            android:parentActivityName="org.ekokonnect.reprohealth.TipListActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="org.ekokonnect.reprohealth.TipListActivity" />
+        </activity>
+        <activity
+            android:name="org.ekokonnect.reprohealth.LoginActivity"
+            android:label="@string/title_activity_login" >
+
+        </activity>
+        <activity
+            android:name="com.facebook.FacebookActivity"
+            android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation"
+            android:label="@string/app_name"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+
+        <meta-data
+            android:name="com.facebook.sdk.ApplicationId"
+            android:value="@string/app_id" />
+                
+             <!-- MetaData -->
+        <meta-data android:name="com.google.android.gms.version"
+           android:value="@integer/google_play_services_version" />
+        
+
+        <activity
+            android:name="org.ekokonnect.reprohealth.AboutActivity"
+            android:label="@string/title_activity_about" >
+        </activity>
+        <activity
+            android:name="org.ekokonnect.reprohealth.ChatActivity"
+            android:label="@string/title_activity_chat" >
+        </activity>
+        <activity
+            android:name="org.ekokonnect.reprohealth.SettingsActivity"
+            android:label="@string/title_activity_settings" >
+        </activity>
+        <activity
+            android:name="org.ekokonnect.reprohealth.LogoutActivity"
+            android:label="@string/title_activity_logout" >
+            <intent-filter>
+                <action android:name="app.action.logout" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+
+        <!-- MetaData -->
+
+        <meta-data
+            android:name="com.google.android.maps.v2.API_KEY"
+            android:value="@string/google_map_api_key" />
+
+        <activity
+            android:name="org.ekokonnect.reprohealth.PeriodCalendarActivity"
+            android:label="@string/title_activity_period_calendar"
+            android:parentActivityName="org.ekokonnect.reprohealth.TipListActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="org.ekokonnect.reprohealth.TipListActivity" />
+            <!-- <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter> -->
+        </activity>
+        
+        <!-- GCM -->
+        <receiver
+            android:name=".GcmBroadcastReceiver"
+            android:permission="com.google.android.c2dm.permission.SEND" >
+            <intent-filter>
+ 
+                <!-- Receives the actual messages. -->
+                <action android:name="com.google.android.c2dm.intent.RECEIVE" />
+                <!-- Receives the registration id. -->
+                <action android:name="com.google.android.c2dm.intent.REGISTRATION" />
+                <category android:name="org.ekokonnect.reprohealth.utils" />
+            </intent-filter>
+        </receiver>
+ 
+        <service android:name=".GcmIntentService" />
+        
+    </application>
+
+</manifest>
