@@ -1,11 +1,11 @@
 package org.ekokonnect.reprohealth;
 
-import android.annotation.TargetApi;
 import android.content.Intent;
 import android.graphics.Typeface;
-import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.view.MenuItemCompat;
+import android.support.v7.widget.ShareActionProvider;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -13,7 +13,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.ShareActionProvider;
 import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
@@ -29,6 +28,7 @@ public class TipDetailFragment extends Fragment {
 	TextView mTipTitle, mTipDate, mTipContent, mTipAuthor;
 	private String title, date, content, author, img;
 	private ImageView mTipImage;
+    private Picasso picasso;
 //	public static final String ARG_ITEM_ID = "item_id";
 	/**
 	 * Mandatory empty constructor for the fragment manager to instantiate the
@@ -48,8 +48,12 @@ public class TipDetailFragment extends Fragment {
 			content = getArguments().getString("content");
 			author = getArguments().getString("author");
 			img = getArguments().getString("img");
+//        Log.d("picasso", img);
 //		}
 			setHasOptionsMenu(true);
+        picasso = Picasso.with(getActivity());
+        picasso.setLoggingEnabled(true);
+        picasso.setIndicatorsEnabled(true);
 			
 	}
 
@@ -83,23 +87,23 @@ public class TipDetailFragment extends Fragment {
 		mTipContent.setText(content);
 		mTipAuthor.setText(author);
 		
-		Picasso.with(getActivity())
+		picasso
         .load(img)
-        .noFade()
+		.placeholder(R.drawable.com_facebook_profile_picture_blank_square)
+        .error(R.drawable.com_facebook_profile_picture_blank_square)
         .into(mTipImage);
 
 		return rootView;
 	}
 	
-	@TargetApi(Build.VERSION_CODES.ICE_CREAM_SANDWICH)
+//	@TargetApi(Build.VERSION_CODES.ICE_CREAM_SANDWICH)
 	@Override
 	public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
 		inflater.inflate(R.menu.viewtipactivity, menu);
 		MenuItem item = menu.findItem(R.id.menu_item_share);
 		
-		mShareActionProvider = (ShareActionProvider)item.getActionProvider();
+		mShareActionProvider = (ShareActionProvider) MenuItemCompat.getActionProvider(item);
 		mShareActionProvider.setShareIntent(getDefaultShareIntent());
-//		return true;
 	}
 	
 	@Override

@@ -1,10 +1,5 @@
 package org.ekokonnect.reprohealth;
 
-import java.util.Calendar;
-
-import org.ekokonnect.reprohealth.adapters.TipListAdapter;
-
-
 import android.annotation.TargetApi;
 import android.app.Activity;
 import android.app.DatePickerDialog;
@@ -30,6 +25,10 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.ListView;
+
+import org.ekokonnect.reprohealth.adapters.TipListAdapter;
+
+import java.util.Calendar;
 //import org.ekokonnect.reprohealth.TipListActivity.DatePickerFragment;
 
 /**
@@ -102,15 +101,10 @@ public class TipListFragment extends ListFragment {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		
-		
- 
-//		listview = getListView();
-		//tipDataSource = new TipDataSource(getApplicationContext());
+
 		adapter = new TipListAdapter(this);
 		setListAdapter(adapter);
 		setHasOptionsMenu(true);
-//		adapter.refesh();
 	}	
 	
 	@Override

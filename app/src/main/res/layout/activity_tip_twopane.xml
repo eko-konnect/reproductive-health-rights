@@ -1,39 +1,55 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:layout_marginLeft="16dp"
-    android:layout_marginRight="16dp"
-    android:baselineAligned="false"
-    android:divider="?android:attr/dividerHorizontal"
-    android:orientation="horizontal"
-    android:showDividers="middle"
-    android:background="@drawable/my_bg"
-    tools:context=".TipListActivity" >
+    android:layout_width="match_parent" android:layout_height="match_parent"
+    tools:context="com.gamefriq.streetwize.activities.ReportTrafficActivity"
+    tools:ignore="MergeRootFrame">
 
-    <!--
-    This layout is a two-pane layout for the Places
-    master/detail flow. See res/values-large/refs.xml and
-    res/values-sw600dp/refs.xml for an example of layout aliases
-    that replace the single-pane version of the layout with
-    this two-pane version.
+    <!-- Toolbar -->
+    <include
+        android:id="@+id/toolbar_actionbar"
+        layout="@layout/toolbar_default"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
 
-    For more on layout aliases, see:
-    http://developer.android.com/training/multiscreen/screensizes.html#TaskUseAliasFilters
-    -->
-
-    <fragment
-        android:id="@+id/tip_list"
-        android:name="org.ekokonnect.reprohealth.TipListFragment"
-        android:layout_width="0dp"
+    <!-- Container -->
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_weight="1"
-        tools:layout="@layout/activity_tiplist" />
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:baselineAligned="false"
+        android:divider="?android:attr/dividerHorizontal"
+        android:orientation="horizontal"
+        android:showDividers="middle"
+        android:background="@drawable/my_bg"
+        tools:context=".TipListActivity" >
 
-    <FrameLayout
-        android:id="@+id/tip_detail_container"
-        android:layout_width="0dp"
-        android:layout_height="match_parent"
-        android:layout_weight="2" />
+        <!--
+        This layout is a two-pane layout for the Places
+        master/detail flow. See res/values-large/refs.xml and
+        res/values-sw600dp/refs.xml for an example of layout aliases
+        that replace the single-pane version of the layout with
+        this two-pane version.
+
+        For more on layout aliases, see:
+        http://developer.android.com/training/multiscreen/screensizes.html#TaskUseAliasFilters
+        -->
+
+        <fragment
+            android:id="@+id/tip_list"
+            android:name="org.ekokonnect.reprohealth.TipListFragment"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            tools:layout="@layout/activity_tiplist" />
+
+        <FrameLayout
+            android:id="@+id/tip_detail_container"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="2" />
+
+    </LinearLayout>
 
 </LinearLayout>

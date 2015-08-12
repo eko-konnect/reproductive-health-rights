@@ -20,5 +20,20 @@
     <color name="caldroid_holo_blue_dark">#ff0099cc</color>
     <!-- A really bright Holo shade of blue -->
     <color name="caldroid_sky_blue">#FFA3E8F7</color>
+
+    <color name="my_awesome_blue">#2196F3</color>
+    <color name="my_awesome_darker_blue">#1976D2</color>
+
+    <color name="material_blue_500">#2196F3</color>
+    <color name="material_blue_700">#1976D2</color>
+    <color name="material_blue_200">#90CAF9</color>
+    <color name="material_blue_100">#BBDEFB</color>
+    <color name="material_blue_200_trans">#1976D2</color>
+
+    <color name="colorPrimary">#E74C3C</color>
+    <color name="colorPrimaryDark">#1976D2</color>
+
+    <color name="theme_accent">#ff4081</color>
+    <color name="accent_pressed">#f50057</color>
 	
 </resources>

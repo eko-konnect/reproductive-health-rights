@@ -1,29 +1,24 @@
 package org.ekokonnect.reprohealth;
 
 import android.annotation.TargetApi;
-import android.app.Activity;
-import android.content.Intent;
-import android.graphics.Typeface;
 import android.os.Build;
 import android.os.Bundle;
-import android.support.v4.app.FragmentActivity;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.Menu;
-import android.view.MenuItem;
 import android.widget.ShareActionProvider;
-import android.widget.TextView;
 
-public class ViewTipActivity extends FragmentActivity {
+public class ViewTipActivity extends AppCompatActivity {
 	private ShareActionProvider mShareActionProvider;
 	/*TextView mTipTitle, mTipDate, mTipContent, mTipAuthor;
 	private String title, date, content, author;*/
+	private Toolbar mToolbar;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_tip_detail);
-
-		// Show the Up button in the action bar.
-		getActionBar().setDisplayHomeAsUpEnabled(true);
+        setupToolbar();
 
 		// savedInstanceState is non-null when there is fragment state
 		// saved from previous configurations of this activity
@@ -55,6 +50,12 @@ public class ViewTipActivity extends FragmentActivity {
 					.add(R.id.tip_detail_container, fragment).commit();
 		}
 	}
+
+    private void setupToolbar() {
+        mToolbar = (Toolbar) findViewById(R.id.toolbar_actionbar);
+        setSupportActionBar(mToolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+    }
 	
 	@TargetApi(Build.VERSION_CODES.ICE_CREAM_SANDWICH)
 	@Override

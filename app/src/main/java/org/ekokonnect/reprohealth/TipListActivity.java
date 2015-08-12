@@ -1,39 +1,18 @@
 package org.ekokonnect.reprohealth;
 
+import android.content.Intent;
+import android.content.SharedPreferences;
+import android.os.Bundle;
+import android.preference.PreferenceManager;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+
 import java.util.ArrayList;
-import java.util.Calendar;
 
 import models.Tip;
 
-import org.ekokonnect.reprohealth.adapters.TipListAdapter;
-import org.ekokonnect.reprohealth.utils.AlertDialogManager;
-import org.ekokonnect.reprohealth.utils.ConnectionDetector;
-
-import android.annotation.TargetApi;
-import android.app.DatePickerDialog;
-import android.app.Dialog;
-import android.app.DialogFragment;
-import android.app.ListActivity;
-import android.app.ProgressDialog;
-import android.content.Context;
-import android.content.Intent;
-import android.content.SharedPreferences;
-import android.os.Build;
-import android.os.Bundle;
-import android.preference.PreferenceManager;
-import android.support.v4.app.FragmentActivity;
-import android.util.Log;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
-import android.view.View;
-import android.widget.AdapterView;
-import android.widget.AdapterView.OnItemClickListener;
-import android.widget.DatePicker;
-import android.widget.ListView;
-import android.widget.Toast;
-
-public class TipListActivity extends FragmentActivity implements TipListFragment.Callbacks {
+public class TipListActivity extends AppCompatActivity implements TipListFragment.Callbacks {
 	//private TipDataSource tipDataSource;
 	
 	public ArrayList<Tip> tips;
@@ -43,6 +22,8 @@ public class TipListActivity extends FragmentActivity implements TipListFragment
 	 * device.
 	 */
 	private boolean mTwoPane;
+
+	private Toolbar mToolbar;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -52,8 +33,9 @@ public class TipListActivity extends FragmentActivity implements TipListFragment
 			finish();
 			startActivity(new Intent(getApplicationContext(), LoginActivity.class));
 		}
-		
-		setContentView(R.layout.activity_tip_list);			
+//        getWindow().addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUND‌​S);
+		setContentView(R.layout.activity_tip_list);
+        setupToolbar();
 
 		if (findViewById(R.id.tip_detail_container) != null) {
 			// The detail container view will be present only in the
@@ -67,14 +49,16 @@ public class TipListActivity extends FragmentActivity implements TipListFragment
 			((TipListFragment) getSupportFragmentManager().findFragmentById(
 					R.id.tip_list)).setActivateOnItemClick(true);
 		}
-		Log.d(TAG, "onCreate Called");
 
-		// TODO: If exposing deep links into your app, handle intents here.
 	}
-	
-	
 
-	private boolean isSignedIn(){
+    private void setupToolbar() {
+        mToolbar = (Toolbar) findViewById(R.id.toolbar_actionbar);
+        setSupportActionBar(mToolbar);
+    }
+
+
+    private boolean isSignedIn(){
 		SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
 		boolean isSignedIn = sharedPreferences.getBoolean("isSignedIn", false);
 		return isSignedIn;

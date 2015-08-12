@@ -4,15 +4,15 @@
         android:layout_height="match_parent"
         android:padding="10dip"
     	android:background="@drawable/my_bg">
-    
+
     <LinearLayout android:id="@+id/progressContainer"
             android:orientation="vertical"
-            android:layout_width="match_parent" 
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="center"
             android:visibility="gone">
-                    
-        
+
+
         <ProgressBar style="?android:attr/progressBarStyleLarge"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
@@ -22,43 +22,43 @@
                 android:text="@string/loading_places"
                 android:paddingTop="4dip"
                 android:singleLine="true" />
-            
-    </LinearLayout> 
-    
-    <RelativeLayout 
+
+    </LinearLayout>
+
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">    
-	    <LinearLayout 
+        android:layout_height="match_parent">
+	    <LinearLayout
 	        android:id="@+id/listContainer"
-	        android:layout_width="match_parent" 
+	        android:layout_width="match_parent"
 	        android:layout_height="wrap_content"
 	        android:layout_above="@+id/button1"
 	        android:layout_alignParentTop="true"
 	        android:orientation="vertical"
 	        android:visibility="visible">
-	        
-	         
+
+
 		    <!-- <Button android:id="@+id/btn_show_map"
 		        android:layout_width="fill_parent"
 		        android:layout_height="wrap_content"
 		        android:text="@string/show_places_on_map"
 		        android:layout_marginTop="10dip"/> -->
-	            
+
 	        <ListView android:id="@android:id/list"
-	                android:layout_width="match_parent" 
+	                android:layout_width="match_parent"
 	                android:layout_height="match_parent"
 	                android:drawSelectorOnTop="false"
 	                android:background="#fff"
 		        android:divider="@drawable/my_bg"
 		        android:dividerHeight="15dip" />
-	        
+
 	        <TextView android:id="@android:id/empty"
 	                android:layout_width="match_parent"
 	                android:layout_height="match_parent"
 	                android:gravity="center"
 	                android:textAppearance="?android:attr/textAppearanceLarge" />
 	    </LinearLayout>
-	    
+
 	    <Button
 	        android:background="@drawable/red_button"
 	        android:id="@+id/button1"
@@ -67,7 +67,7 @@
 	        android:layout_alignParentBottom="true"
 	        android:text="Safe Sex Period"
 	        style="@style/button_text" />
-	    
+
     </RelativeLayout>
-        
+
 </FrameLayout>
