@@ -33,6 +33,7 @@ import com.facebook.login.widget.LoginButton;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GooglePlayServicesUtil;
 import com.google.android.gms.gcm.GoogleCloudMessaging;
+import com.splunk.mint.Mint;
 
 import org.ekokonnect.reprohealth.models.http.UserAuthResponse;
 import org.ekokonnect.reprohealth.services.EkokonnectClient;
@@ -94,7 +95,7 @@ public class LoginActivity extends AppCompatActivity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-
+        Mint.initAndStartSession(LoginActivity.this, "51c64c0b");
 		FacebookSdk.sdkInitialize(getApplicationContext());
 
 		setContentView(R.layout.activity_login);

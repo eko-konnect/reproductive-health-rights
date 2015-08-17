@@ -7,6 +7,8 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.widget.Toast;
 
+import com.splunk.mint.Mint;
+
 import org.ekokonnect.reprohealth.utils.AlertDialogManager;
 import org.ekokonnect.reprohealth.utils.ConnectionDetector;
 
@@ -23,6 +25,7 @@ public class PlaceListActivity extends AppCompatActivity implements
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		Mint.initAndStartSession(PlaceListActivity.this, "51c64c0b");
 		setContentView(R.layout.activity_place_list);
         setupToolbar();
 

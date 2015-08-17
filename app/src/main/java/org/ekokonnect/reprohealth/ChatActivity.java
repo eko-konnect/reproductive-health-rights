@@ -11,6 +11,8 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ListView;
 
+import com.splunk.mint.Mint;
+
 import org.ekokonnect.reprohealth.adapters.ChatActivityAdapter;
 
 import models.Message;
@@ -24,6 +26,7 @@ public class ChatActivity extends AppCompatActivity{
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		Mint.initAndStartSession(ChatActivity.this, "51c64c0b");
 		setContentView(R.layout.activity_chat);
 
         setupToolbar();

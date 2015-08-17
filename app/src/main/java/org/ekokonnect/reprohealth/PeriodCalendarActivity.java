@@ -1,20 +1,13 @@
 package org.ekokonnect.reprohealth;
 
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.HashMap;
-
-import org.ekokonnect.reprohealth.models.CalendarAdapter;
-
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
-import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.app.NavUtils;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -22,9 +15,17 @@ import android.widget.Toast;
 
 import com.roomorama.caldroid.CaldroidFragment;
 import com.roomorama.caldroid.CaldroidListener;
+
+import org.ekokonnect.reprohealth.models.CalendarAdapter;
+
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.HashMap;
 //import android.support.v4.app.DialogFragment;
 
-public class PeriodCalendarActivity extends FragmentActivity {
+public class PeriodCalendarActivity extends AppCompatActivity {
 	public Calendar month;
 	public CalendarAdapter adapter;
 	public Handler handler;
@@ -32,6 +33,7 @@ public class PeriodCalendarActivity extends FragmentActivity {
 	private int lastCycleDay;
 	private boolean undo = false;
 	private CaldroidFragment caldroidFragment;
+	private Toolbar mToolbar;
 
 	@SuppressLint("SimpleDateFormat")
 	@Override
@@ -41,6 +43,7 @@ public class PeriodCalendarActivity extends FragmentActivity {
 		
 		
 		setContentView(R.layout.calendar);
+		setupToolbar();
 		final SimpleDateFormat formatter = new SimpleDateFormat("dd MMM yyyy");
 		onNewIntent(getIntent());
 		// Setup caldroid fragment
@@ -120,17 +123,14 @@ public class PeriodCalendarActivity extends FragmentActivity {
 		caldroidFragment.setCaldroidListener(listener);
 		setCalendar();
 
-		setupActionBar();
 	}
 
-
-	/**
-	 * Set up the {@link android.app.ActionBar}.
-	 */
-	private void setupActionBar() {		
-		getActionBar().setDisplayHomeAsUpEnabled(true);
-
+	private void setupToolbar() {
+		mToolbar = (Toolbar) findViewById(R.id.toolbar_actionbar);
+		setSupportActionBar(mToolbar);
+		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 	}
+
 	
 	private void setCustomResourceForDates() {
 		Calendar cal = Calendar.getInstance();
