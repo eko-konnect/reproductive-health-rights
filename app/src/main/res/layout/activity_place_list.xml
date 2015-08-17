@@ -1,9 +1,24 @@
-<fragment xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/place_list"
-    android:name="org.ekokonnect.reprohealth.PlaceListFragment"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".PlaceListActivity"
-    android:background="@drawable/my_bg"
-    tools:layout="@layout/place_list_layout" />
+    android:layout_width="match_parent" android:layout_height="match_parent"
+    tools:context="com.gamefriq.streetwize.activities.ReportTrafficActivity"
+    tools:ignore="MergeRootFrame">
+
+    <!-- Toolbar -->
+    <include
+        android:id="@+id/toolbar_actionbar"
+        layout="@layout/toolbar_default"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <fragment
+        android:id="@+id/place_list"
+        android:name="org.ekokonnect.reprohealth.PlaceListFragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".PlaceListActivity"
+        android:background="@drawable/my_bg"
+        tools:layout="@layout/place_list_layout" />
+
+</LinearLayout>

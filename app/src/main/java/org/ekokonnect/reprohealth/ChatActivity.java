@@ -1,29 +1,32 @@
 package org.ekokonnect.reprohealth;
 
-import java.util.ArrayList;
-
-import models.Message;
-
-import org.ekokonnect.reprohealth.adapters.ChatActivityAdapter;
-
-import android.app.ListActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ListView;
 
-public class ChatActivity extends ListActivity{
+import org.ekokonnect.reprohealth.adapters.ChatActivityAdapter;
+
+import models.Message;
+
+public class ChatActivity extends AppCompatActivity{
 	ImageButton sendButton;
 	EditText chatText;
 	ChatActivityAdapter adapter;
+	private Toolbar mToolbar;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_chat);
+
+        setupToolbar();
 		sendButton = (ImageButton)findViewById(R.id.sendButton);
 		chatText = (EditText)findViewById(R.id.text);
 		
@@ -36,17 +39,17 @@ public class ChatActivity extends ListActivity{
 			}
 		});
 		
-//		ArrayList<Message> messages = new ArrayList<Message>();
-		//Hard coding chat messages
-		/*Message a = new Message("Hello", false);
-		Message b = new Message("Hi", true);
-		messages.add(a);
-		messages.add(b);*/
-		
 		adapter = new ChatActivityAdapter(this);
-		setListAdapter(adapter);
+        ListView listView = (ListView)findViewById(android.R.id.list);
+		listView.setAdapter(adapter);
 	}
-	
+
+    private void setupToolbar() {
+        mToolbar = (Toolbar) findViewById(R.id.toolbar_actionbar);
+        setSupportActionBar(mToolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+    }
+
 	private void sendMessage(){
 		if (chatText.getText().length() > 0){
 			Message msg = new Message(chatText.getText().toString(), true);

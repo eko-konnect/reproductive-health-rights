@@ -60,10 +60,7 @@ public class TipListActivity extends AppCompatActivity implements TipListFragmen
 
     private boolean isSignedIn(){
 		SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
-		boolean isSignedIn = sharedPreferences.getBoolean("isSignedIn", false);
-		return isSignedIn;
-		
-//		return true;
+		return sharedPreferences.getBoolean("isSignedIn", false);
 	}
 		
 	

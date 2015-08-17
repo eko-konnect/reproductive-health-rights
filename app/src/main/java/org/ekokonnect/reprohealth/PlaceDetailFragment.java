@@ -1,10 +1,5 @@
 package org.ekokonnect.reprohealth;
 
-import org.ekokonnect.reprohealth.models.GooglePlaces;
-import org.ekokonnect.reprohealth.models.PlaceDetails;
-import org.ekokonnect.reprohealth.utils.AlertDialogManager;
-import org.ekokonnect.reprohealth.utils.ConnectionDetector;
-
 import android.graphics.Typeface;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -16,15 +11,18 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.google.android.gms.common.GooglePlayServicesNotAvailableException;
 import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapView;
 import com.google.android.gms.maps.MapsInitializer;
-import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
+
+import org.ekokonnect.reprohealth.models.GooglePlaces;
+import org.ekokonnect.reprohealth.models.PlaceDetails;
+import org.ekokonnect.reprohealth.utils.AlertDialogManager;
+import org.ekokonnect.reprohealth.utils.ConnectionDetector;
 
 /**
  * A fragment representing a single Place detail screen. This fragment is either
@@ -212,7 +210,7 @@ public class PlaceDetailFragment extends Fragment {
             String reference = args[0];
              
             // creating Places class object
-            googlePlaces = new GooglePlaces();
+            googlePlaces = new GooglePlaces(getActivity().getApplicationContext());
  
             // Check if used is connected to Internet
             try {

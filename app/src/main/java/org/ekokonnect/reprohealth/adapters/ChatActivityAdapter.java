@@ -1,17 +1,5 @@
 package org.ekokonnect.reprohealth.adapters;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
-
-import models.Message;
-import models.MessageDataSource;
-
-import org.ekokonnect.reprohealth.R;
-import org.ekokonnect.reprohealth.utils.CommonUtilities;
-import org.json.JSONException;
-import org.json.JSONObject;
-
 import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -25,6 +13,23 @@ import android.widget.BaseAdapter;
 import android.widget.LinearLayout.LayoutParams;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+
+import org.ekokonnect.reprohealth.R;
+import org.ekokonnect.reprohealth.models.http.SendMessageResponseModel;
+import org.ekokonnect.reprohealth.services.EkokonnectClient;
+import org.ekokonnect.reprohealth.services.ServiceClient;
+import org.ekokonnect.reprohealth.utils.CommonUtilities;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+
+import models.Message;
+import models.MessageDataSource;
+import retrofit.Callback;
+import retrofit.RetrofitError;
+import retrofit.client.Response;
 
 
 
@@ -113,66 +118,45 @@ public class ChatActivityAdapter extends BaseAdapter{
 	    String uid = prefs.getString("UID", null);	    
 		
 		String url = CommonUtilities.SERVER_URL_MESSAGE;
-		Log.d(TAG, "URL: "+url);
+		Log.d(TAG, "URL: " + url);
 		
 		Map<String, String> params = new HashMap<String, String>();
     	params.put("message", line.getMessage());
-    	Log.d(TAG, "message: "+line.getMessage());
+    	Log.d(TAG, "message: " + line.getMessage());
     	params.put("uid", uid);
-    	Log.d(TAG, "uid: "+uid);
-    	
-//		CustomRequest request = new CustomRequest(Request.Method.POST, url, params, new
-//				Response.Listener<JSONObject>() {
-//			@Override
-//			public void onResponse(JSONObject response) {
-//				// TODO Auto-generated method stub
-//				Log.d(TAG, response.toString());
-//
-//				try {
-//					if (response.getInt("status") == 0){
-//						JSONObject message = response.getJSONObject("message");
-//						line.statusOK = true;
-//						line.setId(message.getLong("mid"));
-//						line.setDate(message.getJSONObject("msg").getLong("date"));
-//
-//						dataSource = new MessageDataSource(activity);
-//						dataSource.open();
-//						dataSource.insertIntoTable(line);
-//						dataSource.close();
-//						//pd.dismiss();
-////						new Date
-//						Log.d(TAG, "MessageID: "+line.getId());
-//						notifyDataSetChanged();
-//					} else if (response.getInt("status") == 1){
-//						//Toast.makeText(activity.getBaseContext(), "Error", Toast.LENGTH_SHORT).show();
-//						String msg = response.getString("message");
-//						Log.d(TAG, "Line-Error: "+msg);
-////						line.error = msg;
-////						line.score = -1;
-//
-//						notifyDataSetChanged();
-//					}
-//				} catch (JSONException e) {
-//					// TODO Auto-generated catch block
-//					e.printStackTrace();
-//					Log.d(TAG, "JSON Error");
-////					line.error = "App Error";
-////					line.score = -1;
-//				}
-//
-//
-//			}
-//				}, new Response.ErrorListener() {
-//					@Override
-//					public void onErrorResponse(VolleyError error) {
-//						Log.e(TAG, ((error.getMessage()== null)? "no msg" : error.getMessage()));
-//						Log.d(TAG, "Volley Error");
-////						line.error = "Network Error";
-////						line.score = -1;
-//						//pd.dismiss();
-//						//Toast.makeText(activity, "Error", Toast.LENGTH_LONG).show();
-//					}
-//				});
+    	Log.d(TAG, "uid: " + uid);
+
+		EkokonnectClient client = ServiceClient.getInstance()
+				.getClient(activity.getApplicationContext(), EkokonnectClient.class,
+						CommonUtilities.SERVER_URL);
+		client.sendChatMessage(uid, line.getMessage(), new Callback<SendMessageResponseModel>() {
+			@Override
+			public void success(SendMessageResponseModel sendMessageResponseModel, Response response) {
+                if (sendMessageResponseModel.status == 0){
+                    line.statusOK = true;
+                    line.setId(sendMessageResponseModel.message.mid);
+                    line.setDate(sendMessageResponseModel.message.msg.date);
+
+                    dataSource = new MessageDataSource(activity);
+                    dataSource.open();
+                    dataSource.insertIntoTable(line);
+                    dataSource.close();
+
+                    Log.d(TAG, "MessageID: "+line.getId());
+                    notifyDataSetChanged();
+                } else if (sendMessageResponseModel.status == 1){
+                    Log.d(TAG, "Error: ");
+
+                    notifyDataSetChanged();
+                }
+			}
+
+			@Override
+			public void failure(RetrofitError error) {
+                Log.d(TAG, "Error: ");
+			}
+		});
+
 
 	}
 	

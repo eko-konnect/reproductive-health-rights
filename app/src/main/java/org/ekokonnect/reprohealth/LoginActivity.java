@@ -9,20 +9,18 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager.NameNotFoundException;
-import android.graphics.Typeface;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
-import android.support.v4.app.NavUtils;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.TextView;
 import android.widget.Toast;
 
+import com.afollestad.materialdialogs.MaterialDialog;
 import com.facebook.AccessToken;
 import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
@@ -34,7 +32,6 @@ import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GooglePlayServicesUtil;
-
 import com.google.android.gms.gcm.GoogleCloudMessaging;
 
 import org.ekokonnect.reprohealth.models.http.UserAuthResponse;
@@ -87,11 +84,12 @@ public class LoginActivity extends AppCompatActivity {
 
 	private View mLoginFormView;
 	private View mLoginStatusView;
+    private MaterialDialog mDialog;
 //	private TextView guideText;
 
     CallbackManager callbackManager;
     AuthCallback authCallback;
-	
+
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -101,8 +99,8 @@ public class LoginActivity extends AppCompatActivity {
 
 		setContentView(R.layout.activity_login);
 		
-		mLoginStatusView = (View) findViewById(R.id.login_status);
-		mLoginFormView = (View) findViewById(R.id.login_form);
+		mLoginStatusView = findViewById(R.id.login_status);
+		mLoginFormView = findViewById(R.id.login_form);
 
         callbackManager = CallbackManager.Factory.create();
         authCallback = new AuthCallback();
@@ -162,6 +160,19 @@ public class LoginActivity extends AppCompatActivity {
     }
 
 	private void attemptLogin(AccessToken token) {
+        //prepare dialog
+        if(mDialog == null){
+            mDialog = new MaterialDialog.Builder(this)
+//                        .title(R.string.progress_dialog)
+                    .content("Signing you in..please wait")
+                    .progress(true, 0).build();
+//                        .show();
+        }
+//                mDialog = new ProgressDialog(SplashScreenActivity.this, "Signing you in..please wait");
+        mDialog.setCancelable(true);
+        mDialog.setCanceledOnTouchOutside(false);
+        mDialog.show();
+
         GraphRequest request = GraphRequest.newMeRequest(token,
                 new GraphRequest.GraphJSONObjectCallback() {
                     @Override
@@ -179,6 +190,9 @@ public class LoginActivity extends AppCompatActivity {
 
                         } catch (JSONException e) {
                             e.printStackTrace();
+                            if(mDialog != null){
+                                mDialog.dismiss();
+                            }
                             throw new NullPointerException();
                         }
 
@@ -448,7 +462,7 @@ public class LoginActivity extends AppCompatActivity {
     	Log.d(TAG, "Registering User to Backend " + regid);
 
 		EkokonnectClient client = ServiceClient.getInstance()
-				.getClient(getApplicationContext(), EkokonnectClient.class);
+				.getClient(getApplicationContext(), EkokonnectClient.class, CommonUtilities.SERVER_URL);
 
 		client.authenticateUser("register", mEmail, mFirstName, mLastName, mSex, regid,
 				new Callback<UserAuthResponse>() {
@@ -470,6 +484,9 @@ public class LoginActivity extends AppCompatActivity {
 						showProgress(false);
 						Toast.makeText(getApplicationContext(), "Unexpected Error", Toast.LENGTH_LONG).show();
 						error.printStackTrace();
+                        if(mDialog != null){
+                            mDialog.dismiss();
+                        }
 					}
 				});
 

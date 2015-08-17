@@ -1,47 +1,35 @@
 package org.ekokonnect.reprohealth;
 
-import org.ekokonnect.reprohealth.utils.AlertDialogManager;
-import org.ekokonnect.reprohealth.utils.ConnectionDetector;
-
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v4.app.FragmentActivity;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.widget.Toast;
 
+import org.ekokonnect.reprohealth.utils.AlertDialogManager;
+import org.ekokonnect.reprohealth.utils.ConnectionDetector;
 
-public class PlaceListActivity extends FragmentActivity implements
+
+public class PlaceListActivity extends AppCompatActivity implements
 		PlaceListFragment.Callbacks {
 
 	private static final String TAG = "PlaceListActivity";
-	/**
-	 * Whether or not the activity is in two-pane mode, i.e. running on a tablet
-	 * device.
-	 */
+
 	private boolean mTwoPane;
-	private ConnectionDetector cd;
+
+    private Toolbar mToolbar;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_place_list);
-		
-		cd = new ConnectionDetector(getApplicationContext());		
+        setupToolbar();
+
+		ConnectionDetector cd = new ConnectionDetector(getApplicationContext());
 		// Check if Internet present
 		if (!cd.isConnectingToInternet()) {
-			// Internet Connection is not present
-			Toast.makeText(this, "No active internet network detected. " +
-					"This application requires an active internet connection to work perfectly.",
-					Toast.LENGTH_LONG).show();
-//			alert.showAlertDialog(getApplicationContext(),
-//					"Internet Connection Error",
-//					"Please connect to working Internet connection", false);
-//			showDialog();
-			AlertDialogManager.showAlertDialog(getSupportFragmentManager(),
-					"Network Error!", "Unable to Connect to the Internet. Please check your" +
-							"connection and try again.", false);
-			// stop executing code by finishinng activity
-			finish();
+			showNoInternetDialog();
 		}
 
 		if (findViewById(R.id.place_detail_container) != null) {
@@ -59,6 +47,24 @@ public class PlaceListActivity extends FragmentActivity implements
 		Log.d(TAG, "onCreate Called");
 
 		// TODO: If exposing deep links into your app, handle intents here.
+	}
+
+	private void setupToolbar() {
+		mToolbar = (Toolbar) findViewById(R.id.toolbar_actionbar);
+		setSupportActionBar(mToolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+	}
+
+	private void showNoInternetDialog() {
+		// Internet Connection is not present
+		Toast.makeText(this, "No active internet network detected. " +
+						"This application requires an active internet connection to work perfectly.",
+				Toast.LENGTH_LONG).show();
+		AlertDialogManager.showAlertDialog(getSupportFragmentManager(),
+				"Network Error!", "Unable to Connect to the Internet. Please check your" +
+						"connection and try again.", false);
+		// stop executing code by finishinng activity
+		finish();
 	}
 
 	/**

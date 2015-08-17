@@ -96,32 +96,39 @@
 	        </LinearLayout>
 	    </ScrollView>
 	    
-	    <LinearLayout 
+	    <LinearLayout
 	        android:layout_width="fill_parent"
 	        android:layout_height="0dip"
 	        android:layout_weight="1"
 	        android:orientation="vertical" >
 	     <LinearLayout 
-	         android:layout_width="wrap_content"
+	         android:layout_width="match_parent"
 	         android:layout_height="wrap_content"
 	         android:orientation="horizontal"
+             android:paddingRight="16dip"
+             android:paddingBottom="16dp"
 	         android:layout_gravity="center_horizontal">
-	            <ImageView 
-	             android:layout_width="100dip"
+
+             <ImageView
+	             android:layout_width="0dp"
+                 android:layout_weight="1"
 	             android:layout_height="wrap_content"
 	             android:src="@drawable/wharc_logo"/>
 	         <ImageView 
-	             android:layout_width="100dip"
+	             android:layout_width="0dp"
 	             android:layout_height="wrap_content"
+				 android:layout_weight="1"
 	             android:src="@drawable/eko_small"
+                 android:paddingLeft="10dip"
 	             android:paddingRight="10dip"/>
 	         <ImageView 
-	             android:layout_width="100dip"
+	             android:layout_width="0dp"
+				 android:layout_weight="1"
 	             android:layout_height="wrap_content"
 	             android:src="@drawable/ff"/>
 	         
 	     </LinearLayout>
-	        	
+
 	    </LinearLayout>
 	    
 	</LinearLayout>

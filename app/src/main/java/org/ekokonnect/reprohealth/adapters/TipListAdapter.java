@@ -1,21 +1,5 @@
 package org.ekokonnect.reprohealth.adapters;
 
-import models.Tip;
-import models.TipDataSource;
-import retrofit.Callback;
-import retrofit.RetrofitError;
-import retrofit.client.Response;
-
-import org.ekokonnect.reprohealth.R;
-import org.ekokonnect.reprohealth.TipListActivity;
-import org.ekokonnect.reprohealth.TipListFragment;
-import org.ekokonnect.reprohealth.services.EkokonnectClient;
-import org.ekokonnect.reprohealth.services.ServiceClient;
-import org.ekokonnect.reprohealth.utils.CommonUtilities;
-import org.ekokonnect.reprohealth.utils.ConnectionDetector;
-import org.json.JSONArray;
-import org.json.JSONException;
-
 import android.content.Context;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -25,7 +9,21 @@ import android.widget.BaseAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.ekokonnect.reprohealth.R;
+import org.ekokonnect.reprohealth.TipListActivity;
+import org.ekokonnect.reprohealth.TipListFragment;
+import org.ekokonnect.reprohealth.services.EkokonnectClient;
+import org.ekokonnect.reprohealth.services.ServiceClient;
+import org.ekokonnect.reprohealth.utils.CommonUtilities;
+import org.ekokonnect.reprohealth.utils.ConnectionDetector;
+
 import java.util.List;
+
+import models.Tip;
+import models.TipDataSource;
+import retrofit.Callback;
+import retrofit.RetrofitError;
+import retrofit.client.Response;
 
 //import com.gamefriq.asuu.models.Tip;
 
@@ -108,7 +106,7 @@ public class TipListAdapter extends BaseAdapter {
 		Log.d("ReproHealth", "about to get tip");
 
 		EkokonnectClient client = ServiceClient.getInstance()
-				.getClient(activity.getApplicationContext(), EkokonnectClient.class);
+				.getClient(activity.getApplicationContext(), EkokonnectClient.class, CommonUtilities.SERVER_URL);
         client.downloadTips(new Callback<List<Tip>>() {
             @Override
             public void success(List<Tip> tips, Response response) {

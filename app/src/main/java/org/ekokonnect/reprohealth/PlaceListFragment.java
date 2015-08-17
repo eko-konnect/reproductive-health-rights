@@ -1,16 +1,5 @@
 package org.ekokonnect.reprohealth;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-
-import org.ekokonnect.reprohealth.adapters.PlaceListAdapter;
-import org.ekokonnect.reprohealth.models.GooglePlaces;
-import org.ekokonnect.reprohealth.models.Place;
-import org.ekokonnect.reprohealth.models.PlacesList;
-import org.ekokonnect.reprohealth.utils.AlertDialogManager;
-import org.ekokonnect.reprohealth.utils.ConnectionDetector;
-import org.ekokonnect.reprohealth.utils.GPSTracker;
-
 import android.app.Activity;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -21,8 +10,17 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ListView;
-import android.widget.SimpleAdapter;
 import android.widget.TextView;
+
+import org.ekokonnect.reprohealth.adapters.PlaceListAdapter;
+import org.ekokonnect.reprohealth.models.GooglePlaces;
+import org.ekokonnect.reprohealth.models.Place;
+import org.ekokonnect.reprohealth.models.PlacesList;
+import org.ekokonnect.reprohealth.utils.AlertDialogManager;
+import org.ekokonnect.reprohealth.utils.ConnectionDetector;
+import org.ekokonnect.reprohealth.utils.GPSTracker;
+
+import java.util.ArrayList;
 
 /**
  * A list fragment representing a list of Places. This fragment also supports
@@ -127,17 +125,17 @@ public class PlaceListFragment extends ListFragment {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		
-		cd = new ConnectionDetector(getActivity().getApplicationContext());
-		 
-        // Check if Internet present
-        isInternetPresent = cd.isConnectingToInternet();
-        if (!isInternetPresent) {
-            // Internet Connection is not present
-            AlertDialogManager.showAlertDialog(getFragmentManager(), "Internet Connection Error",
-                    "Please connect to working Internet connection", false);
-            // stop executing code by return
-            return;
-        }
+//		cd = new ConnectionDetector(getActivity().getApplicationContext());
+//
+//        // Check if Internet present
+//        isInternetPresent = cd.isConnectingToInternet();
+//        if (!isInternetPresent) {
+//            // Internet Connection is not present
+//            AlertDialogManager.showAlertDialog(getFragmentManager(), "Internet Connection Error",
+//                    "Please connect to working Internet connection", false);
+//            // stop executing code by return
+//            return;
+//        }
  
         // creating GPS Class object
         gps = new GPSTracker(getActivity().getApplicationContext());
@@ -295,26 +293,16 @@ Log.e(TAG, "Activated Position: "+ STATE_ACTIVATED_POSITION);
         protected String doInBackground(String... args) {
         	Log.d(TAG, "doInBackground");
             // creating Places class object
-            googlePlaces = new GooglePlaces();
-             
-            try {
-                // Separeate your place types by PIPE symbol "|"
-                // If you want all types places make it as null
-                // Check list of types supported by google
-                // 
-                String types = "hospital|health"; // Listing places only cafes, restaurants
-                 
-                // Radius in meters - increase this value if you don't find any places
-                double radius = 5000; // 1000 meters 
-                 
-                // get nearest places
-                nearPlaces = googlePlaces.search(gps.getLatitude(),
-                        gps.getLongitude(), radius, types);
-                 
- 
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+            googlePlaces = new GooglePlaces(getActivity().getApplicationContext());
+
+			String types = "hospital|health"; // Listing places only cafes, restaurants
+
+			// Radius in meters - increase this value if you don't find any places
+			double radius = 5000; // 1000 meters
+
+			// get nearest places
+			nearPlaces = googlePlaces.search(gps.getLatitude(),
+					gps.getLongitude(), radius, types);
             return null;
         }
  

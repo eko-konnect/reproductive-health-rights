@@ -1,6 +1,7 @@
 package org.ekokonnect.reprohealth.services;
 
 
+import org.ekokonnect.reprohealth.models.http.SendMessageResponseModel;
 import org.ekokonnect.reprohealth.models.http.UserAuthResponse;
 
 import java.util.List;
@@ -20,13 +21,24 @@ public interface EkokonnectClient {
 
     @FormUrlEncoded
     @POST("/user")
-    void authenticateUser(@Field("action") String action, @Field("email") String email,
-                          @Field("firstName") String firstName,
-                          @Field("lastName") String lastName,
-                          @Field("gender") String gender,
-                          @Field("gcmid") String gcmid,
-                          Callback<UserAuthResponse> callback);
+    void authenticateUser(
+            @Field("action") String action,
+            @Field("email") String email,
+            @Field("firstName") String firstName,
+            @Field("lastName") String lastName,
+            @Field("gender") String gender,
+            @Field("gcmid") String gcmid,
+            Callback<UserAuthResponse> callback
+    );
 
     @GET("/tips")
     void downloadTips(Callback<List<Tip>> callback);
+
+    @FormUrlEncoded
+    @POST("/u/message")
+    void sendChatMessage(
+            @Field("uid") String userId,
+            @Field("message") String message,
+            Callback<SendMessageResponseModel> callback
+    );
 }

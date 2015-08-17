@@ -26,6 +26,8 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.ListView;
 
+import com.facebook.login.LoginManager;
+
 import org.ekokonnect.reprohealth.adapters.TipListAdapter;
 
 import java.util.Calendar;
@@ -265,21 +267,17 @@ Log.e(TAG, "Activated Position: "+ STATE_ACTIVATED_POSITION);
 		Context appContext = getActivity().getApplicationContext();
 		SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(appContext);
 		Editor prefEditor = preferences.edit();
-		prefEditor.clear().commit();
-		
-//		//FB Logout
-//		Session session = Session.getActiveSession();
-//		if (session != null){
-//			session.closeAndClearTokenInformation();
-//		}
+		prefEditor.clear().apply();
+
+        LoginManager.getInstance().logOut();
 		getActivity().finish();
 		
 		// TODO: Fix Logout Issue
-		Intent intent = new Intent(Intent.ACTION_MAIN);
-		intent.addCategory(Intent.CATEGORY_HOME);
-		intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-//        Intent intent = new Intent(getActivity().getApplicationContext(), LoginActivity.class);
-//        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+//		Intent intent = new Intent(Intent.ACTION_MAIN);
+//		intent.addCategory(Intent.CATEGORY_HOME);
+//		intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        Intent intent = new Intent(getActivity().getApplicationContext(), LoginActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(intent);
 		
 	}

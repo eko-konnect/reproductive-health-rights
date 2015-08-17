@@ -2,8 +2,9 @@ package org.ekokonnect.reprohealth;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.NavUtils;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 
 /**
@@ -14,7 +15,9 @@ import android.view.MenuItem;
  * This activity is mostly just a 'shell' activity containing nothing more than
  * a {@link PlaceDetailFragment}.
  */
-public class PlaceDetailActivity extends FragmentActivity {
+public class PlaceDetailActivity extends AppCompatActivity {
+
+	private Toolbar mToolbar;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -22,7 +25,7 @@ public class PlaceDetailActivity extends FragmentActivity {
 		setContentView(R.layout.activity_place_detail);
 
 		// Show the Up button in the action bar.
-		getActionBar().setDisplayHomeAsUpEnabled(true);
+		setupToolbar();
 
 		// savedInstanceState is non-null when there is fragment state
 		// saved from previous configurations of this activity
@@ -44,6 +47,12 @@ public class PlaceDetailActivity extends FragmentActivity {
 			getSupportFragmentManager().beginTransaction()
 					.add(R.id.place_detail_container, fragment).commit();
 		}
+	}
+
+	private void setupToolbar() {
+		mToolbar = (Toolbar) findViewById(R.id.toolbar_actionbar);
+		setSupportActionBar(mToolbar);
+		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 	}
 
 	@Override

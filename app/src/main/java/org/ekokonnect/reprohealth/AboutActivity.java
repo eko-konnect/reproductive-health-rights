@@ -9,13 +9,15 @@ import android.content.Intent;
 import android.net.MailTo;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
-public class AboutActivity extends Activity {
+public class AboutActivity extends AppCompatActivity {
 	private String lolu = "http://ng.linkedin.com/pub/lolu-bodunwa/5b/55b/39b";
 	private String stanley = "http://ng.linkedin.com/pub/stanley-obinna-agba/5b/586/a81";
 	private String wale = "http://ng.linkedin.com/in/waleoyediran";
@@ -40,14 +42,16 @@ public class AboutActivity extends Activity {
 	      finish();
 	    }
 	  };
+    private Toolbar mToolbar;
 
-	  @Override
+    @Override
 	  protected void onCreate(Bundle icicle) {
 	    super.onCreate(icicle);
 	    
 	  //Do this for every activity together with the overrided onStop()	  	
 //	  	setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 	    setContentView(R.layout.help);
+        setupToolbar();
 
 	    webView = (WebView)findViewById(R.id.help_contents);
 	    webView.setWebViewClient(new HelpClient(this));
@@ -56,9 +60,9 @@ public class AboutActivity extends Activity {
 	    String page = intent.getStringExtra(REQUESTED_PAGE_KEY);
 
 	    // Show an OK button.
-	    View doneButton = findViewById(R.id.done_button);
-	    doneButton.setOnClickListener(doneListener);
-	    doneButton.setVisibility(View.VISIBLE);
+//	    View doneButton = findViewById(R.id.done_button);
+//	    doneButton.setOnClickListener(doneListener);
+//	    doneButton.setVisibility(View.VISIBLE);
 //	    if (page.equals(DEFAULT_PAGE)) {
 //	      doneButton.setVisibility(View.VISIBLE);
 //	    } else {
@@ -76,6 +80,12 @@ public class AboutActivity extends Activity {
 	      webView.loadUrl(BASE_URL + DEFAULT_PAGE);
 	    }
 	  }
+
+    private void setupToolbar() {
+        mToolbar = (Toolbar) findViewById(R.id.toolbar_actionbar);
+        setSupportActionBar(mToolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+    }
 
 	  @Override
 	  protected void onSaveInstanceState(Bundle state) {

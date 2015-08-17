@@ -14,8 +14,6 @@ import com.google.gson.JsonPrimitive;
 import com.google.gson.JsonSerializationContext;
 import com.google.gson.JsonSerializer;
 
-import org.ekokonnect.reprohealth.utils.CommonUtilities;
-
 import java.lang.reflect.Type;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -76,8 +74,7 @@ public class ServiceClient {
     }
 
     @SuppressWarnings("unchecked")
-    public <T> T getClient(Context context, Class<T> clazz) {
-        String url = CommonUtilities.SERVER_URL;
+    public <T> T getClient(Context context, Class<T> clazz, String url) {
         RestAdapter mRestAdapter = mRestAdapters.get(url);
         if (mRestAdapter == null) {
 
