@@ -25,7 +25,7 @@ import retrofit.Callback;
 import retrofit.RetrofitError;
 import retrofit.client.Response;
 
-//import com.gamefriq.asuu.models.Tip;
+
 
 public class TipListAdapter extends BaseAdapter {
 //	ArrayList<Tip> tips;

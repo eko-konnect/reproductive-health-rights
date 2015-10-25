@@ -12,6 +12,7 @@ public class Tip {
 	private String content;
 	private String author;
 	private String date;
+	@SerializedName("imgUrl")
 	private String imgUrl;
 		
 	public Tip(long id, String title, String content, String author, String date, String imgUrl) {

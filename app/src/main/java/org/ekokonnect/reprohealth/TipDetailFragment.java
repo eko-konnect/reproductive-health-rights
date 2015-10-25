@@ -48,12 +48,11 @@ public class TipDetailFragment extends Fragment {
 			content = getArguments().getString("content");
 			author = getArguments().getString("author");
 			img = getArguments().getString("img");
-//        Log.d("picasso", img);
-//		}
+
 			setHasOptionsMenu(true);
         picasso = Picasso.with(getActivity());
-        picasso.setLoggingEnabled(true);
-        picasso.setIndicatorsEnabled(true);
+//        picasso.setLoggingEnabled(true);
+//        picasso.setIndicatorsEnabled(true);
 			
 	}
 
@@ -62,14 +61,7 @@ public class TipDetailFragment extends Fragment {
 			Bundle savedInstanceState) {
 		View rootView = inflater.inflate(R.layout.activity_viewtip,
 				container, false);
-		
-		/*Bundle extras = getIntent().getExtras();
-		title = (String)extras.getString("title");
-		date = (String)extras.getString("date");
-		content = (String)extras.getString("content");
-		author = (String)extras.getString("author");*/
-		
-		
+
 		mTipTitle = (TextView)rootView.findViewById(R.id.tipTitle);
 		mTipDate = (TextView)rootView.findViewById(R.id.tipDate);
 		mTipContent = (TextView)rootView.findViewById(R.id.tipContent);

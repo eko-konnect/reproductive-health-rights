@@ -3,15 +3,15 @@ apply from: '../artifacts.gradle'
 apply from: '../keys.gradle'
 
 android {
-    compileSdkVersion 22
+    compileSdkVersion 23
     buildToolsVersion "21.1.2"
 
     defaultConfig {
         applicationId "org.ekokonnect.reprohealth"
         minSdkVersion 11
-        targetSdkVersion 22
-        versionCode 6
-        versionName "2.1.5"
+        targetSdkVersion 23
+        versionCode 7
+        versionName "2.1.6"
     }
 
     buildTypes {
@@ -31,10 +31,11 @@ android {
 repositories {
     maven { url "https://raw.githubusercontent.com/layerhq/releases-android/master/releases/" }
     maven { url "https://mint.splunk.com/gradle/" }
+    maven { url "https://jitpack.io" }
 }
 
 dependencies {
-    compile 'com.android.support:design:22.2.1'
+    compile 'com.android.support:design:23.0.1'
     compile 'com.google.http-client:google-http-client-gson:1.20.0'
     compile 'com.google.code.gson:gson:2.3'
     compile 'com.google.android.gms:play-services:7.8.0'
@@ -44,7 +45,10 @@ dependencies {
     compile 'com.darwinsys:hirondelle-date4j:1.5.1'
     compile 'com.squareup.picasso:picasso:2.5.2'
 
-    compile 'com.afollestad:material-dialogs:0.6.4.7'
+    compile('com.afollestad.material-dialogs:core:0.8.4.2@aar') {
+        transitive = true
+    }
+
     compile 'com.splunk.mint:mint:4.1'
 
 }

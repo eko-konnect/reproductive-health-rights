@@ -8,7 +8,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 public class TipsReaderDbHelper extends SQLiteOpenHelper {
 	
 	public static final String DATABASE_NAME = "Tips.db";
-	public static final int DATABASE_VERSION = 2;
+	public static final int DATABASE_VERSION = 3;
 	private static final String TEXT_TYPE = " TEXT";
 	private static final String COMMA_SEP = ",";
 	private static final String SQL_CREATE_ENTRIES = 
