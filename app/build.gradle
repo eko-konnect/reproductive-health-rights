@@ -5,6 +5,7 @@ apply from: '../keys.gradle'
 android {
     compileSdkVersion 23
     buildToolsVersion "21.1.2"
+    useLibrary 'org.apache.http.legacy'
 
     defaultConfig {
         applicationId "org.ekokonnect.reprohealth"
